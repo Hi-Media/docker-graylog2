@@ -1,0 +1,7 @@
+/.settings
+/.buildpath
+/.project
+/build/
+*~
+/cache.properties
+/.idea/
