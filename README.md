@@ -12,7 +12,18 @@ Specifically, contains:
 
 Need external [ElasticSearch](http://www.elasticsearch.org/) instance.
 
-### Why this Docker?
+
+## Table of Contents
+
+  * [Why this Docker?](#why-this-docker)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Persisting data](#persisting-data)
+  * [Graylog2 web: get started](#graylog2-web-get-started)
+  * [Send logs from Symfony2 to Graylog2 server](#send-logs-from-symfony2-to-graylog2-server)
+
+
+## Why this Docker?
 
 Both [Kibana](http://www.elasticsearch.org/overview/kibana/) and Graylog2 are great tools for real time data analytics.
 We wanted to test each product with **a unique** ElasticSearch instance:
@@ -23,7 +34,8 @@ We wanted to test each product with **a unique** ElasticSearch instance:
 
 ![Big picture](https://raw.githubusercontent.com/Hi-Media/docker-graylog2/master/img/big_picture.png)
 
-### Installation
+
+## Installation
 
 1. Install [Docker](https://www.docker.com/).
 
@@ -43,7 +55,7 @@ We wanted to test each product with **a unique** ElasticSearch instance:
     ```
 
 
-### Usage
+## Usage
 
 Launch all 3 Docker containers:
 
@@ -71,7 +83,7 @@ URLs:
 * Graylog2 web, *after few seconds* (admin/admin): `http://localhost:9000/`
 
 
-### Persisting data
+## Persisting data
 
 * Logs sent to ElasticSearch via Graylog2 server are stored into `/data` [volume](https://docs.docker.com/userguide/dockervolumes/).
 * Kibana's dashboards are saved into ElasticSearch
@@ -84,7 +96,7 @@ $ ./graylog2-kibana-run.sh --es-data=<host-dir> --mongodb-data=<host-dir>
 ```
 
 
-### Graylog2 web, get started
+## Graylog2 web: get started
 
 First steps are not trivial…
 
@@ -143,7 +155,7 @@ On host:
 Messages must appear on Graylog2 web. Click on magnifying glass if needed. Mail must have been sent.
 
 
-### Send logs from [Symfony2](http://symfony.com/) to Graylog2 server
+## Send logs from [Symfony2](http://symfony.com/) to Graylog2 server
 
 Add following to `composer.json`:
 
