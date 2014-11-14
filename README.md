@@ -160,7 +160,7 @@ Messages must appear on Graylog2 web. Click on magnifying glass if needed. Mail 
 Add following to `composer.json`:
 
 ```json
-	"graylog2/gelf-php": "dev-master"
+"graylog2/gelf-php": "dev-master"
 ```
 
 Then:
@@ -177,4 +177,10 @@ monolog:
         main:
             type:      gelf
             publisher: { hostname: 127.0.0.1, port: 12201 }
+```
+
+Finally:
+
+```php
+$this->get('logger')->notice('Hello notice…');
 ```
