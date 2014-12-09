@@ -187,6 +187,8 @@ $this->get('logger')->notice('Hello notice…');
 
 ## If you are using boot2docker (VM boot2docker-vm) in Mac OSX, use below opiton to forward docker VM host ports to mac osx host
 
+Use ```boot2docker poweroff``` before you perform below tasks.
+
 Add following to `vb_ports_forwarding.sh`:
 
 ```
@@ -202,6 +204,8 @@ done
 ```
 or use ```vb_ports_forwarding.sh``` bash script. 
 Use ```delete_vb_ports_forwarding.sh``` to delete the forwarded ports from docker VM host to mac osx.
+
+Now, restart boot2docker-vm again by executing ```boot2docker up```.
 
 For running Kibana, you might also have to do ```boot2docker ssh -L 9200:localhost:9200``` to create a SSH tunnel between docker VM host and mac osx (localhost).
 
