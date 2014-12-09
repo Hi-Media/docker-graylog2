@@ -187,7 +187,7 @@ $this->get('logger')->notice('Hello notice…');
 
 ## If you are using boot2docker (VM boot2docker-vm) in Mac OSX, use below opiton to forward docker VM host ports to mac osx host
 
-Add following to `composer.json`:
+Add following to `vb_ports_forwarding.sh`:
 
 ```
 #!/bin/bash
