@@ -21,6 +21,7 @@ Need external [ElasticSearch](http://www.elasticsearch.org/) instance.
   * [Persisting data](#persisting-data)
   * [Graylog2 web: get started](#graylog2-web-get-started)
   * [Send logs from Symfony2 to Graylog2 server](#send-logs-from-symfony2-to-graylog2-server)
+  * [OS X & boot2docker](#os-x--boot2docker)
 
 
 ## Why this Docker?
@@ -185,28 +186,28 @@ Finally:
 $this->get('logger')->notice('Hello notice…');
 ```
 
-## If you are using boot2docker (VM boot2docker-vm) in Mac OSX, use below opiton to forward docker VM host ports to mac osx host
+## OS X & boot2docker
 
-Use ```boot2docker poweroff``` before you perform below tasks.
+If you are using [boot2docker](https://github.com/boot2docker/boot2docker) (VM boot2docker-vm) in Mac OS X,
+use below scripts to forward docker VM host ports to OS X host.
 
-Add following to `vb_ports_forwarding.sh`:
+Use `boot2docker poweroff` before you perform below tasks.
 
-```
-#!/bin/bash
-
-PORTS=(9200,8080,27017,28017,9000)
-
-for i in "${filecontent[@]}"
-do
-  VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port$i,tcp,,$i,,$i";
-    VBoxManage modifyvm "boot2docker-vm" --natpf1 "udp-port$i,udp,,$i,,$i";
+```bash
+# VM must be powered off
+for i in 8080 9000 9200 27017 28017; do
+ VBoxManage modifyvm "boot2docker-vm" --natpf1 delete "tcp-port$i";
+ VBoxManage modifyvm "boot2docker-vm" --natpf1 delete "udp-port$i";
 done
 ```
-or use ```vb_ports_forwarding.sh``` bash script. 
-Use ```delete_vb_ports_forwarding.sh``` to delete the forwarded ports from docker VM host to mac osx.
 
-Now, restart boot2docker-vm again by executing ```boot2docker up```.
+or execute `vb_ports_forwarding.sh` bash script.
 
-For running Kibana, you might also have to do ```boot2docker ssh -L 9200:localhost:9200``` to create a SSH tunnel between docker VM host and mac osx (localhost).
+Execute `delete_vb_ports_forwarding.sh` to delete the forwarded ports from docker VM host to OS X.
 
-Use ```boot2docker ip``` to get the IP and access it via this IP.
+Now, restart boot2docker-vm again by executing `boot2docker up`.
+
+For running Kibana, you might also have to do `boot2docker ssh -L 9200:localhost:9200`
+to create a SSH tunnel between docker VM host and mac osx (localhost).
+
+Use `boot2docker ip` to get the IP and access it via this IP.
